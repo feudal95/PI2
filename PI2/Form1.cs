@@ -16,7 +16,9 @@ namespace PI2
     public partial class Form1 : Form
     {
         Thread th;
+
         MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=asistencia;SslMode=none");
+        string mat = "";
         public Form1()
         {
             InitializeComponent();
@@ -31,11 +33,13 @@ namespace PI2
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
+                /*
                 this.Hide();
                 Form f2 = new menu(txtUser.Text);
                 f2.ShowDialog();
-
-                /*
+                this.Close();
+                */
+                mat = user;
                 this.Close();
                 th = new Thread(openNewForm);
                 th.SetApartmentState(ApartmentState.STA);
@@ -54,9 +58,9 @@ namespace PI2
         }
         private void openNewForm()
         {
-            /*
-            Application.Run(new menu());
-            */
+
+            Application.Run(new menu(mat));
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
