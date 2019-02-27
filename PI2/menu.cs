@@ -52,7 +52,7 @@ namespace PI2
             th = new Thread(openNewForm);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
-
+            /* */
 
 
         }
