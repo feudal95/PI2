@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2019 a las 09:17:40
+-- Tiempo de generación: 28-02-2019 a las 09:14:55
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -81,8 +81,8 @@ CREATE TABLE `salon` (
   `idsalon` int(11) NOT NULL,
   `num_salon` varchar(45) NOT NULL,
   `materia` varchar(255) NOT NULL,
-  `horaInicio` varchar(45) NOT NULL,
-  `horaFinal` varchar(45) NOT NULL,
+  `horaInicio` time NOT NULL,
+  `horaFinal` time NOT NULL,
   `semestre` varchar(45) NOT NULL,
   `lunes` tinyint(4) NOT NULL DEFAULT '0',
   `martes` tinyint(4) NOT NULL DEFAULT '0',
@@ -98,7 +98,13 @@ CREATE TABLE `salon` (
 --
 
 INSERT INTO `salon` (`idsalon`, `num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES
-(0, '1202', 'Fisica II', 'M1', 'M2', 'tercero', 0, 0, 0, 0, 0, 0, 1);
+(1, '1202', 'Fisica II', '12:00:00', '00:00:00', 'tercero', 0, 0, 0, 0, 0, 0, 1),
+(2, '123', '123123', '00:12:31', '00:01:23', '123', 1, 1, 0, 1, 0, 0, 1),
+(3, '123', '123', '00:01:23', '12:00:00', '13:00:00', 1, 0, 1, 0, 1, 0, 1),
+(4, '123', '123', '00:01:23', '12:30:00', '13:45:00', 1, 0, 1, 0, 1, 0, 1),
+(5, '', '', '00:00:00', '00:00:00', '::00', 0, 0, 0, 0, 0, 0, 1),
+(6, '1782', 'ciencias', '00:00:00', '13:50:00', '14:30:00', 0, 0, 0, 0, 0, 0, 1),
+(7, '1782', 'ciencias', '00:00:00', '13:50:00', '14:30:00', 0, 0, 0, 0, 0, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -126,7 +132,7 @@ ALTER TABLE `docentes`
 -- Indices de la tabla `salon`
 --
 ALTER TABLE `salon`
-  ADD PRIMARY KEY (`idsalon`,`docentes_id`);
+  ADD PRIMARY KEY (`idsalon`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -137,6 +143,12 @@ ALTER TABLE `salon`
 --
 ALTER TABLE `docentes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `salon`
+--
+ALTER TABLE `salon`
+  MODIFY `idsalon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

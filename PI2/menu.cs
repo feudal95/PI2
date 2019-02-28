@@ -60,7 +60,7 @@ namespace PI2
         private void openNewForm()
         {
 
-            Application.Run(new agregarSalon(mat));
+                Application.Run(new agregarSalon(mat));
 
         }
     }

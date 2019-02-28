@@ -47,6 +47,10 @@
             this.viernes = new System.Windows.Forms.CheckBox();
             this.sabado = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.minE = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.minF = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -79,7 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(232, 224);
+            this.label4.Location = new System.Drawing.Point(240, 224);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 3;
@@ -119,15 +123,21 @@
             // 
             this.hE.Location = new System.Drawing.Point(147, 221);
             this.hE.Name = "hE";
-            this.hE.Size = new System.Drawing.Size(56, 20);
+            this.hE.Size = new System.Drawing.Size(24, 20);
             this.hE.TabIndex = 8;
+            this.hE.TextChanged += new System.EventHandler(this.hE_TextChanged);
+            this.hE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.hE_KeyDown);
+            this.hE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hE_KeyPress);
             // 
             // hF
             // 
-            this.hF.Location = new System.Drawing.Point(346, 221);
+            this.hF.Location = new System.Drawing.Point(334, 221);
             this.hF.Name = "hF";
-            this.hF.Size = new System.Drawing.Size(56, 20);
+            this.hF.Size = new System.Drawing.Size(24, 20);
             this.hF.TabIndex = 9;
+            this.hF.TextChanged += new System.EventHandler(this.hF_TextChanged);
+            this.hF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hF_KeyPress);
+            this.hF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.hF_MouseDown);
             // 
             // usuario
             // 
@@ -224,11 +234,53 @@
             this.label6.Text = "Frecuencia";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
+            // minE
+            // 
+            this.minE.Location = new System.Drawing.Point(187, 221);
+            this.minE.Name = "minE";
+            this.minE.Size = new System.Drawing.Size(24, 20);
+            this.minE.TabIndex = 19;
+            this.minE.TextChanged += new System.EventHandler(this.minE_TextChanged);
+            this.minE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minE_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(174, 224);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(10, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = ":";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(360, 224);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(10, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = ":";
+            // 
+            // minF
+            // 
+            this.minF.Location = new System.Drawing.Point(371, 221);
+            this.minF.Name = "minF";
+            this.minF.Size = new System.Drawing.Size(24, 20);
+            this.minF.TabIndex = 22;
+            this.minF.TextChanged += new System.EventHandler(this.minF_TextChanged);
+            this.minF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minF_KeyPress);
+            this.minF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minF_MouseDown);
+            // 
             // agregarSalon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.minF);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.minE);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.sabado);
             this.Controls.Add(this.viernes);
@@ -277,5 +329,9 @@
         private System.Windows.Forms.CheckBox viernes;
         private System.Windows.Forms.CheckBox sabado;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox minE;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox minF;
     }
 }
