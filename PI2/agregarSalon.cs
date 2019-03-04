@@ -23,6 +23,7 @@ namespace PI2
         string jue = "0";
         string vie = "0";
         string sab = "0";
+
         MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=asistencia;SslMode=none");
         public agregarSalon(string welcm)
         {
@@ -50,27 +51,55 @@ namespace PI2
             }
             else
             {
-                try
+
+
+
+                int i = 0;
+                foreach (Control c in groupBox1.Controls)
                 {
-                    String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + semestre.Text + "', '" + hE.Text + ":" + minE.Text + ":00', '" + hF.Text + ":" + minF.Text + ":00','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
-                    MessageBox.Show(query);
-                    MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
-                    MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
-                    DataTable dt = new DataTable();
-                    adaptador.Fill(dt);
-                    if (lunes.Checked == false || martes.Checked == false || miercoles.Checked == false || jueves.Checked == false || viernes.Checked == false || sabado.Checked == false ) // CHECAR ESTA PARTE!!!
+
+                    if (c is CheckBox)
                     {
-                        MessageBox.Show("¡El salon fue agradado con exito! sin embbargo faltaron asignar los dias que se impartira la materia, esto puede ser modificado previamente, pero hasta entonces, no se podra tomar asistencia en esta materia hasta que se asignen los dias");
+                        CheckBox cb = (CheckBox)c;
+
+                        if (cb.Checked == false)
+                        {
+                            i = i + 1;
+                            if (i == 6)
+                            {
+
+                                MessageBox.Show("Por favor, seleccione los dias en los que se impartira la clase para que se agregue el grupo.");
+ 
+
+                            }
+
+                        } else{
+
+                            //MessageBox.Show("TODO OKAY PARA QUERY");
+                            
+                            try
+                            {
+                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + semestre.Text + "', '" + hE.Text + ":" + minE.Text + ":00', '" + hF.Text + ":" + minF.Text + ":00','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
+                                MessageBox.Show(query);
+                                MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                                MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                                DataTable dt = new DataTable();
+                                adaptador.Fill(dt);
+
+                                MessageBox.Show("¡Salon agregado exitosamente!");
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("error insertar datos" + ex.Message);
+                            }
+                            
+                        }
+
+
+
+
                     }
-                    else
-                    {
-                        MessageBox.Show("¡Salon agregado exitosamente!");
-                    }
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("error insertar datos" + ex.Message);
                 }
             }
 
@@ -299,5 +328,37 @@ namespace PI2
 
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach(Control c in groupBox1.Controls)
+            {
+                if (c is CheckBox)
+                {
+                    CheckBox cb = (CheckBox)c;
+                    
+                    if (cb.Checked == false)
+                    {
+                        i = i + 1;
+                        if (i == 6)
+                        {
+
+                            MessageBox.Show("TODOS ESTAN EN FALSO");
+                            i = i + 1;
+
+                        }
+
+                    } 
+
+
+
+
+                }
+            }
+        }
+
+
+
     }
 }

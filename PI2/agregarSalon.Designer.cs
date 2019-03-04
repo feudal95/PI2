@@ -46,11 +46,13 @@
             this.jueves = new System.Windows.Forms.CheckBox();
             this.viernes = new System.Windows.Forms.CheckBox();
             this.sabado = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.minE = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.minF = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -161,7 +163,7 @@
             // lunes
             // 
             this.lunes.AutoSize = true;
-            this.lunes.Location = new System.Drawing.Point(123, 284);
+            this.lunes.Location = new System.Drawing.Point(11, 19);
             this.lunes.Name = "lunes";
             this.lunes.Size = new System.Drawing.Size(32, 17);
             this.lunes.TabIndex = 12;
@@ -172,7 +174,7 @@
             // martes
             // 
             this.martes.AutoSize = true;
-            this.martes.Location = new System.Drawing.Point(161, 284);
+            this.martes.Location = new System.Drawing.Point(49, 19);
             this.martes.Name = "martes";
             this.martes.Size = new System.Drawing.Size(35, 17);
             this.martes.TabIndex = 13;
@@ -183,7 +185,7 @@
             // miercoles
             // 
             this.miercoles.AutoSize = true;
-            this.miercoles.Location = new System.Drawing.Point(202, 284);
+            this.miercoles.Location = new System.Drawing.Point(90, 19);
             this.miercoles.Name = "miercoles";
             this.miercoles.Size = new System.Drawing.Size(35, 17);
             this.miercoles.TabIndex = 14;
@@ -194,7 +196,7 @@
             // jueves
             // 
             this.jueves.AutoSize = true;
-            this.jueves.Location = new System.Drawing.Point(243, 284);
+            this.jueves.Location = new System.Drawing.Point(131, 19);
             this.jueves.Name = "jueves";
             this.jueves.Size = new System.Drawing.Size(31, 17);
             this.jueves.TabIndex = 15;
@@ -205,7 +207,7 @@
             // viernes
             // 
             this.viernes.AutoSize = true;
-            this.viernes.Location = new System.Drawing.Point(280, 284);
+            this.viernes.Location = new System.Drawing.Point(168, 19);
             this.viernes.Name = "viernes";
             this.viernes.Size = new System.Drawing.Size(33, 17);
             this.viernes.TabIndex = 16;
@@ -216,23 +218,13 @@
             // sabado
             // 
             this.sabado.AutoSize = true;
-            this.sabado.Location = new System.Drawing.Point(319, 284);
+            this.sabado.Location = new System.Drawing.Point(207, 19);
             this.sabado.Name = "sabado";
             this.sabado.Size = new System.Drawing.Size(33, 17);
             this.sabado.TabIndex = 17;
             this.sabado.Text = "S";
             this.sabado.UseVisualStyleBackColor = true;
             this.sabado.CheckedChanged += new System.EventHandler(this.sabado_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 284);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Frecuencia";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // minE
             // 
@@ -272,22 +264,42 @@
             this.minF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minF_KeyPress);
             this.minF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minF_MouseDown);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.sabado);
+            this.groupBox1.Controls.Add(this.lunes);
+            this.groupBox1.Controls.Add(this.martes);
+            this.groupBox1.Controls.Add(this.miercoles);
+            this.groupBox1.Controls.Add(this.jueves);
+            this.groupBox1.Controls.Add(this.viernes);
+            this.groupBox1.Location = new System.Drawing.Point(49, 271);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(264, 48);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Frecuencia";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(334, 286);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "revisar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // agregarSalon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.minF);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.minE);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.sabado);
-            this.Controls.Add(this.viernes);
-            this.Controls.Add(this.jueves);
-            this.Controls.Add(this.miercoles);
-            this.Controls.Add(this.martes);
-            this.Controls.Add(this.lunes);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.usuario);
             this.Controls.Add(this.hF);
@@ -303,6 +315,8 @@
             this.Name = "agregarSalon";
             this.Text = "agregarSalon";
             this.Load += new System.EventHandler(this.agregarSalon_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,10 +342,11 @@
         private System.Windows.Forms.CheckBox jueves;
         private System.Windows.Forms.CheckBox viernes;
         private System.Windows.Forms.CheckBox sabado;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox minE;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox minF;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
