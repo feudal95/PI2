@@ -267,6 +267,13 @@ namespace PI2
                 hF.Text = "";
 
             }
+        
+            if(int.Parse(hF.Text)> int.Parse(hE.Text))
+            {
+                MessageBox.Show("Ya sabes cual es el error");
+
+                /*SIGUELE ACA WE*/
+            }
 
         }
 
