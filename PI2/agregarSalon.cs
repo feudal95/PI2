@@ -42,9 +42,35 @@ namespace PI2
 
         private void agregarSalon_Load(object sender, EventArgs e)
         {
-            
+
+            fill();
         }
 
+
+        void fill()
+        {
+            MySqlCommand cmdDataBase = new MySqlCommand("select num_salon, materia, horaInicio, horaFinal, semestre, lunes, martes, miercoles, jueves, viernes, sabado from salon;", conn);
+
+            try
+            {
+                MySqlDataAdapter sda = new MySqlDataAdapter();
+                sda.SelectCommand = cmdDataBase;
+                DataTable dbdataset = new DataTable();
+                sda.Fill(dbdataset);
+                BindingSource bSource = new BindingSource();
+
+                bSource.DataSource = dbdataset;
+                dataGridView1.DataSource = bSource;
+                sda.Update(dbdataset);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+
+        }   
         private void button1_Click(object sender, EventArgs e)
         {
             if (salon.Text == "" || materia.Text == "" || semestre.Text == ""|| hE.Text == "" || minE.Text == "" ||hF.Text == "" ||minE.Text == "")
@@ -81,7 +107,7 @@ namespace PI2
                             
                             try
                             {
-                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + semestre.Text + "', '" + hE.Text + ":" + minE.Text + ":00', '" + hF.Text + ":" + minF.Text + ":00','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
+                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + hF.Text + ":" + minF.Text + ":00', '" + hE.Text + ":" + minE.Text + ":00', '" + semestre.Text + "','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
                                 MessageBox.Show(query);
                                 MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
                                 MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
@@ -89,6 +115,8 @@ namespace PI2
                                 adaptador.Fill(dt);
 
                                 MessageBox.Show("¡Salon agregado exitosamente!");
+
+                                fill();
 
                             }
                             catch (Exception ex)
@@ -348,31 +376,7 @@ namespace PI2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            foreach(Control c in groupBox1.Controls)
-            {
-                if (c is CheckBox)
-                {
-                    CheckBox cb = (CheckBox)c;
-                    
-                    if (cb.Checked == false)
-                    {
-                        i = i + 1;
-                        if (i == 6)
-                        {
-
-                            MessageBox.Show("TODOS ESTAN EN FALSO");
-                            i = i + 1;
-
-                        }
-
-                    } 
-
-
-
-
-                }
-            }
+         
         }
 
         private void hF_Leave(object sender, EventArgs e)
@@ -398,6 +402,13 @@ namespace PI2
 
         private void minF_Leave(object sender, EventArgs e)
         {
+
+
+            if (hF.Text == "")
+            {
+                minF.Text = "";
+            }
+
             if (minF.Text == "")
             {
 
