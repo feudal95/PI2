@@ -38,9 +38,11 @@ namespace PI2
  
         }
 
+        
+
         private void agregarSalon_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -267,13 +269,21 @@ namespace PI2
                 hF.Text = "";
 
             }
-        
-            if(int.Parse(hF.Text)> int.Parse(hE.Text))
+            if (hF.Text == "")
             {
-                MessageBox.Show("Ya sabes cual es el error");
 
-                /*SIGUELE ACA WE*/
             }
+            else if (hF.Text != "")
+            {
+
+                if (int.Parse(hF.Text) > 23)
+                {
+                    MessageBox.Show("La hora a la que termina la clase no puede exceder de las 23:00 horas ");
+                    hF.Text = "";
+                }
+            }
+
+
 
         }
 
@@ -365,7 +375,61 @@ namespace PI2
             }
         }
 
+        private void hF_Leave(object sender, EventArgs e)
+        {
+
+            if (hF.Text == "")
+            {
+
+            }else if (hF.Text != "")
+            {
+                if (int.Parse(hF.Text) < int.Parse(hE.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese una hora valida, la hora en la que finaliza la clase, no puede ser menor a la hora que empieza.");
+                    hF.Text = "";
 
 
+                }
+
+
+            }
+                        
+        }
+
+        private void minF_Leave(object sender, EventArgs e)
+        {
+            if (minF.Text == "")
+            {
+
+            }
+            else if (minF.Text != "")
+            {
+
+                if (int.Parse(hF.Text) == int.Parse(hE.Text))
+                {
+                    if (int.Parse(minF.Text) <= int.Parse(minE.Text))
+                    {
+                        MessageBox.Show("Por favor, ingrese una hora valida, la hora en la que finaliza la clase, no puede ser menor a la hora que empieza.");
+                        minF.Text = "";
+
+
+                    }
+                }
+                else if ((int.Parse(hF.Text) <= int.Parse(hE.Text)))
+                {
+                    if (int.Parse(minF.Text) <= int.Parse(minE.Text))
+                    {
+                        MessageBox.Show("Por favor, ingrese una hora valida, la hora en la que finaliza la clase, no puede ser menor a la hora que empieza.");
+                        minF.Text = "";
+
+
+                    }
+                }
+
+                
+
+
+            }
+        }
     }
 }

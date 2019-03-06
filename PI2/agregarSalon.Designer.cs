@@ -139,6 +139,7 @@
             this.hF.TabIndex = 9;
             this.hF.TextChanged += new System.EventHandler(this.hF_TextChanged);
             this.hF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hF_KeyPress);
+            this.hF.Leave += new System.EventHandler(this.hF_Leave);
             this.hF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.hF_MouseDown);
             // 
             // usuario
@@ -262,6 +263,7 @@
             this.minF.TabIndex = 22;
             this.minF.TextChanged += new System.EventHandler(this.minF_TextChanged);
             this.minF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minF_KeyPress);
+            this.minF.Leave += new System.EventHandler(this.minF_Leave);
             this.minF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minF_MouseDown);
             // 
             // groupBox1
