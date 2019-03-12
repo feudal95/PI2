@@ -442,5 +442,39 @@ namespace PI2
 
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+/*
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null)
+                    {
+                        MessageBox.Show(cell.Value.ToString());
+                    }
+                }
+            }
+            */
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                {
+
+                    MessageBox.Show(i.ToString());
+                    if (row.Cells[2].Value != null)
+                    {
+                        MessageBox.Show(row.Cells[2].Value.ToString());
+                    }
+                }
+            }
+        }
     }
 }

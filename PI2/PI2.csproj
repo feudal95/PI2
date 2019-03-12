@@ -53,6 +53,7 @@
     <Compile Include="agregarSalon.Designer.cs">
       <DependentUpon>agregarSalon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
