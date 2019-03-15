@@ -452,7 +452,7 @@ namespace PI2
                 {
                     if (cell.Value != null)
                     {
-                        MessageBox.Show(cell.Value.ToString());
+                        MessageBox.Show(cell.Value.ToString()); ////ss
                     }
                 }
             }
@@ -488,7 +488,7 @@ namespace PI2
                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
                                 }else
                                 {
-                                    MessageBox.Show("TODO OKAY");
+
                                 }
 
                             }
