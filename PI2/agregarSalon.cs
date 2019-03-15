@@ -462,19 +462,41 @@ namespace PI2
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            checarEmpalme();
             
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                for (int i = 10; i < dataGridView1.Columns.Count; i++)
-                {
+        }
 
-                    MessageBox.Show(i.ToString());
-                    if (row.Cells[2].Value != null)
+        private void checarEmpalme()
+        {
+            if (hE.Text != "") { 
+                if (lun == "1") {
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        MessageBox.Show(row.Cells[2].Value.ToString());
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+                            MessageBox.Show(i.ToString());
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                string h = row.Cells[2].Value.ToString();
+                                DateTime horaEmpieza = Convert.ToDateTime(h);
+                                int hStart = horaEmpieza.Hour;
+                                if (int.Parse(hE.Text) == hStart)
+                                {
+                                    MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                }else
+                                {
+                                    MessageBox.Show("TODO OKAY");
+                                }
+
+                            }
+                        }
                     }
                 }
             }
+
         }
     }
 }
