@@ -61,7 +61,7 @@ namespace PI2
         {
 
                 Application.Run(new agregarSalon(mat));
-
+                
         }
     }
 }

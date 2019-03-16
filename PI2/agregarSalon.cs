@@ -468,6 +468,21 @@ namespace PI2
 
         private void checarEmpalme()
         {
+            string h = "";
+            string termina = "";
+            string existente = "";
+
+            string horasE = hE.Text + ":" + minE.Text + ":00";
+            string horasF = hF.Text + ":" + minF.Text + ":00";
+            DateTime horaExistente = new DateTime();
+            DateTime horaExistenteTermina = new DateTime();
+            DateTime horaIngresar = new DateTime();/**/
+            DateTime horaIngresarTermina = DateTime.ParseExact(horasE, "H:m:s", null); /*SIGUELE AQUI 16 MARZO */
+            horaIngresar = DateTime.ParseExact(horasE, "H:m:s", null);
+            MessageBox.Show(horaIngresar.ToString("H:m:s"));
+
+
+            
             if (hE.Text != "") { 
                 if (lun == "1") {
 
@@ -476,25 +491,37 @@ namespace PI2
                         for (int i = 10; i < dataGridView1.Columns.Count; i++)
                         {
 
-                            MessageBox.Show(i.ToString());
+                            
                             if (row.Cells[2].Value != null)
                             {
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
-                                string h = row.Cells[2].Value.ToString();
-                                DateTime horaEmpieza = Convert.ToDateTime(h);
-                                int hStart = horaEmpieza.Hour;
-                                if (int.Parse(hE.Text) == hStart)
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h ;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme");
+                                }
+
+                                /*if (int.Parse(hE.Text) == hStart)
                                 {
                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
                                 }else
                                 {
 
-                                }
+                                }*/
 
                             }
                         }
                     }
                 }
+
             }
 
         }
