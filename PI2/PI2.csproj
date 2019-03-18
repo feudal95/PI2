@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +52,12 @@
     </Compile>
     <Compile Include="agregarSalon.Designer.cs">
       <DependentUpon>agregarSalon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="asignarAccesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="asignarAccesos.Designer.cs">
+      <DependentUpon>asignarAccesos.cs</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Form1.cs">
@@ -77,6 +83,7 @@
     <EmbeddedResource Include="agregarSalon.resx">
       <DependentUpon>agregarSalon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="asignarAccesos.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -104,6 +112,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empleado1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empresa1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graficoback1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graficoback11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patron1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patron11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quitar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tarjeta1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

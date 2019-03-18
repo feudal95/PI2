@@ -24,7 +24,7 @@ namespace PI2
         string vie = "0";
         string sab = "0";
 
-        MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=asistencia;SslMode=none");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         public agregarSalon(string welcm)
         {
             mat = welcm;
