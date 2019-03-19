@@ -70,7 +70,10 @@ namespace PI2
             }
             
 
-        }   
+        }
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (salon.Text == "" || materia.Text == "" || semestre.Text == ""|| hE.Text == "" || minE.Text == "" ||hF.Text == "" ||minE.Text == "")
@@ -101,13 +104,26 @@ namespace PI2
 
                             }
 
+
+
+
+
+
+
+
                         } else{
 
+                            checarEmpalme();
+                            return;
                             //MessageBox.Show("TODO OKAY PARA QUERY");
-                            
+
+
+
+
+                            /*
                             try
                             {
-                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaInicio`, `horaFinal`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + hF.Text + ":" + minF.Text + ":00', '" + hE.Text + ":" + minE.Text + ":00', '" + semestre.Text + "','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
+                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaFinal`, `horaInicio`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + hF.Text + ":" + minF.Text + ":00', '" + hE.Text + ":" + minE.Text + ":00', '" + semestre.Text + "','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
                                 MessageBox.Show(query);
                                 MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
                                 MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
@@ -117,13 +133,16 @@ namespace PI2
                                 MessageBox.Show("¡Salon agregado exitosamente!");
 
                                 fill();
+                                return;
 
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show("error insertar datos" + ex.Message);
+                                return;
                             }
-                            
+                            */
+
                         }
 
 
@@ -137,6 +156,35 @@ namespace PI2
 
 
 
+        }
+
+        private void ingresarDatos()
+        {
+            try
+            {
+                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaFinal`, `horaInicio`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + hF.Text + ":" + minF.Text + ":00', '" + hE.Text + ":" + minE.Text + ":00', '" + semestre.Text + "','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
+                MessageBox.Show(query);
+                MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                DataTable dt = new DataTable();
+                adaptador.Fill(dt);
+
+                MessageBox.Show("¡Salon agregado exitosamente!");
+
+                fill();
+                return;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error insertar datos" + ex.Message);
+                return;
+            }
+        }
+
+        private void test()
+        {
+            MessageBox.Show("LLEGASTE");
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -476,13 +524,17 @@ namespace PI2
             string horasF = hF.Text + ":" + minF.Text + ":00";
             DateTime horaExistente = new DateTime();
             DateTime horaExistenteTermina = new DateTime();
+
+
             DateTime horaIngresar = new DateTime();/**/
-            DateTime horaIngresarTermina = DateTime.ParseExact(horasE, "H:m:s", null); /*SIGUELE AQUI 16 MARZO */
+            DateTime horaIngresarTermina = new DateTime();
+            horaIngresarTermina = DateTime.ParseExact(horasF, "H:m:s", null); /*SIGUELE AQUI 16 MARZO */
             horaIngresar = DateTime.ParseExact(horasE, "H:m:s", null);
-            MessageBox.Show(horaIngresar.ToString("H:m:s"));
+            MessageBox.Show("Hora ingrear empieza"+ horaIngresar.ToString("H:m:s"));
+            MessageBox.Show("Hora ingrear termina" + horaIngresarTermina.ToString("H:m:s"));
 
 
-            
+
             if (hE.Text != "") { 
                 if (lun == "1") {
 
@@ -491,22 +543,50 @@ namespace PI2
                         for (int i = 10; i < dataGridView1.Columns.Count; i++)
                         {
 
-                            
+
                             if (row.Cells[2].Value != null)
                             {
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
-                                existente = h ;
+                                existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
                                 if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                 {
-                                    MessageBox.Show("Hay empalme");
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia lunes");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia lunes");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia lunes");
+                                        return;
+                                    }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia lunes");
+                                        return;
+                                    }
+                                }
+
+
+                               /*
+                                if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de salida");
                                 }
 
                                 /*if (int.Parse(hE.Text) == hStart)
@@ -521,7 +601,239 @@ namespace PI2
                         }
                     }
                 }
+                if (mar == "1")
+                {
 
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia martes");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia martes");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia martes");
+                                        return;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                if (mie == "1")
+                {
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia martes");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia miercoles");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia miercoles");
+                                        return;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                if (jue == "1")
+                {
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia jueves");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia jueves");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia jueves");
+                                        return;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                if (vie == "1")
+                {
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia viernes");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia viernes");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia viernes");
+                                        return;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                if (sab == "1")
+                {
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        for (int i = 10; i < dataGridView1.Columns.Count; i++)
+                        {
+
+
+                            if (row.Cells[2].Value != null)
+                            {
+                                //MessageBox.Show(row.Cells[2].Value.ToString());
+                                h = row.Cells[2].Value.ToString();
+                                termina = row.Cells[3].Value.ToString();
+                                existente = h;
+                                horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
+                                horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                MessageBox.Show(horaExistente.ToString("H:m:s"));
+                                MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
+
+
+                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                {
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia sabado");
+                                    return;
+                                }
+
+
+                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                {
+                                    if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia sabado");
+                                        return;
+                                    }
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay > horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia sabado");
+                                        return;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+
+                ingresarDatos();
             }
 
         }
