@@ -16,14 +16,14 @@ namespace PI2
 {
 
     
-    public partial class asignarAccesos : Form
+    public partial class AgregarAlumnos : Form
     {
         Thread th;
 
         string entrada ="";
 
         string matri = "";
-        public asignarAccesos(string mat)
+        public AgregarAlumnos(string mat)
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;

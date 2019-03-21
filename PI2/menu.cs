@@ -68,7 +68,14 @@ namespace PI2
         private void openNewForm2()
         {
 
-            Application.Run(new asignarAccesos());
+            Application.Run(new asignarAccesos(mat));
+
+        }
+
+        private void openNewForm3()
+        {
+
+            Application.Run(new AgregarAlumnos(mat));
 
         }
 
@@ -76,6 +83,14 @@ namespace PI2
         {
             this.Close();
             th = new Thread(openNewForm2);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm3);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
