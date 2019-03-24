@@ -824,6 +824,7 @@ namespace PI2
                                     {
                                         MessageBox.Show("Hay empalme en la hora de salida, dia sabado");
                                         return;
+                                        /**/
                                     }
                                 }
 
