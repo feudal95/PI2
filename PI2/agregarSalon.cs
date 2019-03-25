@@ -519,7 +519,12 @@ namespace PI2
             string h = "";
             string termina = "";
             string existente = "";
-
+            string ll = "";
+            string mm = "";
+            string mmm = "";
+            string jj = "";
+            string vv = "";
+            string ss = "";
             string horasE = hE.Text + ":" + minE.Text + ":00";
             string horasF = hF.Text + ":" + minF.Text + ":00";
             DateTime horaExistente = new DateTime();
@@ -552,17 +557,18 @@ namespace PI2
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+                                ll = row.Cells[5].Value.ToString();
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && ll == "1")
                                 {
                                     MessageBox.Show("Hay empalme en la hora de entrada, dia lunes");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && ll == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -601,6 +607,7 @@ namespace PI2
                         }
                     }
                 }
+
                 if (mar == "1")
                 {
 
@@ -615,21 +622,22 @@ namespace PI2
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
+                                mm = row.Cells[6].Value.ToString();
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && mm == "1")
                                 {
                                     MessageBox.Show("Hay empalme en la hora de entrada, dia martes");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && mm == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -641,12 +649,35 @@ namespace PI2
                                         MessageBox.Show("Hay empalme en la hora de salida, dia martes");
                                         return;
                                     }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia martes");
+                                        return;
+                                    }
                                 }
+
+
+                                /*
+                                 if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                 {
+                                     MessageBox.Show("Hay empalme en la hora de salida");
+                                 }
+
+                                 /*if (int.Parse(hE.Text) == hStart)
+                                 {
+                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                 }else
+                                 {
+
+                                 }*/
 
                             }
                         }
                     }
                 }
+
+
                 if (mie == "1")
                 {
 
@@ -661,21 +692,22 @@ namespace PI2
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
+                                mmm = row.Cells[7].Value.ToString();
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && mmm == "1")
                                 {
-                                    MessageBox.Show("Hay empalme en la hora de entrada, dia martes");
+                                    MessageBox.Show("Hay empalme en la hora de entrada, dia miercoles");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && mmm == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -687,12 +719,35 @@ namespace PI2
                                         MessageBox.Show("Hay empalme en la hora de salida, dia miercoles");
                                         return;
                                     }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia miercoles");
+                                        return;
+                                    }
                                 }
+
+
+                                /*
+                                 if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                 {
+                                     MessageBox.Show("Hay empalme en la hora de salida");
+                                 }
+
+                                 /*if (int.Parse(hE.Text) == hStart)
+                                 {
+                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                 }else
+                                 {
+
+                                 }*/
 
                             }
                         }
                     }
                 }
+
+
                 if (jue == "1")
                 {
 
@@ -707,21 +762,22 @@ namespace PI2
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
+                                jj = row.Cells[8].Value.ToString();
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && jj == "1")
                                 {
                                     MessageBox.Show("Hay empalme en la hora de entrada, dia jueves");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && jj == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -733,12 +789,35 @@ namespace PI2
                                         MessageBox.Show("Hay empalme en la hora de salida, dia jueves");
                                         return;
                                     }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia jueves");
+                                        return;
+                                    }
                                 }
+
+
+                                /*
+                                 if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                 {
+                                     MessageBox.Show("Hay empalme en la hora de salida");
+                                 }
+
+                                 /*if (int.Parse(hE.Text) == hStart)
+                                 {
+                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                 }else
+                                 {
+
+                                 }*/
 
                             }
                         }
                     }
                 }
+
+
                 if (vie == "1")
                 {
 
@@ -753,21 +832,22 @@ namespace PI2
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
+                                vv = row.Cells[9].Value.ToString();
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && vv == "1")
                                 {
                                     MessageBox.Show("Hay empalme en la hora de entrada, dia viernes");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && vv == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -779,12 +859,35 @@ namespace PI2
                                         MessageBox.Show("Hay empalme en la hora de salida, dia viernes");
                                         return;
                                     }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia jueves");
+                                        return;
+                                    }
                                 }
+
+
+                                /*
+                                 if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                 {
+                                     MessageBox.Show("Hay empalme en la hora de salida");
+                                 }
+
+                                 /*if (int.Parse(hE.Text) == hStart)
+                                 {
+                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                 }else
+                                 {
+
+                                 }*/
 
                             }
                         }
                     }
                 }
+
+
                 if (sab == "1")
                 {
 
@@ -799,21 +902,22 @@ namespace PI2
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
+                                ss = row.Cells[10].Value.ToString();
                                 existente = h;
                                 horaExistenteTermina = DateTime.ParseExact(termina, "H:m:s", null);
                                 horaExistente = DateTime.ParseExact(existente, "H:m:s", null);
+
                                 MessageBox.Show(horaExistente.ToString("H:m:s"));
                                 MessageBox.Show(horaExistenteTermina.ToString("H:m:s"));
 
-
-                                if (horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay > horaExistente.TimeOfDay && horaIngresar.TimeOfDay < horaExistenteTermina.TimeOfDay) && ss == "1")
                                 {
                                     MessageBox.Show("Hay empalme en la hora de entrada, dia sabado");
                                     return;
                                 }
 
 
-                                if (horaIngresar.TimeOfDay < horaExistente.TimeOfDay)
+                                if ((horaIngresar.TimeOfDay < horaExistente.TimeOfDay || horaIngresar.TimeOfDay == horaExistente.TimeOfDay) && ss == "1")
                                 {
                                     if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
                                     {
@@ -824,9 +928,29 @@ namespace PI2
                                     {
                                         MessageBox.Show("Hay empalme en la hora de salida, dia sabado");
                                         return;
-                                        /**/
+                                    }
+
+                                    else if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay == horaExistenteTermina.TimeOfDay)
+                                    {
+                                        MessageBox.Show("Hay empalme en la hora de salida, dia sabado");
+                                        return;
                                     }
                                 }
+
+
+                                /*
+                                 if (horaIngresarTermina.TimeOfDay > horaExistente.TimeOfDay && horaIngresarTermina.TimeOfDay < horaExistenteTermina.TimeOfDay)
+                                 {
+                                     MessageBox.Show("Hay empalme en la hora de salida");
+                                 }
+
+                                 /*if (int.Parse(hE.Text) == hStart)
+                                 {
+                                     MessageBox.Show("existe empalme en hora BORRA ESTE MENSAJE");
+                                 }else
+                                 {
+
+                                 }*/
 
                             }
                         }
@@ -834,7 +958,8 @@ namespace PI2
                 }
 
 
-                ingresarDatos();
+
+                //   ingresarDatos();
             }
 
         }
