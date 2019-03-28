@@ -36,18 +36,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.pass = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textSalon = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textHora = new System.Windows.Forms.TextBox();
             this.textMatricula = new System.Windows.Forms.TextBox();
             this.textNombre = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,7 +59,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(274, 79);
+            this.label2.Location = new System.Drawing.Point(335, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 24);
             this.label2.TabIndex = 5;
@@ -71,7 +71,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(274, 116);
+            this.label3.Location = new System.Drawing.Point(335, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 24);
             this.label3.TabIndex = 7;
@@ -79,7 +79,7 @@
             // 
             // textBoxRFID
             // 
-            this.textBoxRFID.Location = new System.Drawing.Point(100, 83);
+            this.textBoxRFID.Location = new System.Drawing.Point(469, 210);
             this.textBoxRFID.Name = "textBoxRFID";
             this.textBoxRFID.Size = new System.Drawing.Size(121, 20);
             this.textBoxRFID.TabIndex = 8;
@@ -91,7 +91,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(42, 83);
+            this.label4.Location = new System.Drawing.Point(411, 210);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 24);
             this.label4.TabIndex = 9;
@@ -128,16 +128,6 @@
             // serialPort1
             // 
             this.serialPort1.PortName = "COM3";
-
-            // 
-            // pass
-            // 
-            this.pass.Location = new System.Drawing.Point(469, 162);
-            this.pass.Name = "pass";
-            this.pass.PasswordChar = '*';
-            this.pass.Size = new System.Drawing.Size(121, 20);
-            this.pass.TabIndex = 13;
-            this.pass.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label5
             // 
@@ -145,7 +135,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(274, 157);
+            this.label5.Location = new System.Drawing.Point(44, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 24);
             this.label5.TabIndex = 14;
@@ -206,18 +196,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(274, 196);
+            this.label1.Location = new System.Drawing.Point(44, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 24);
             this.label1.TabIndex = 5;
             this.label1.Text = "Salon";
-            // 
-            // textSalon
-            // 
-            this.textSalon.Location = new System.Drawing.Point(469, 201);
-            this.textSalon.Name = "textSalon";
-            this.textSalon.Size = new System.Drawing.Size(121, 20);
-            this.textSalon.TabIndex = 8;
             // 
             // label7
             // 
@@ -225,18 +208,11 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(274, 232);
+            this.label7.Location = new System.Drawing.Point(44, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 24);
             this.label7.TabIndex = 5;
             this.label7.Text = "Hora";
-            // 
-            // textHora
-            // 
-            this.textHora.Location = new System.Drawing.Point(469, 237);
-            this.textHora.Name = "textHora";
-            this.textHora.Size = new System.Drawing.Size(121, 20);
-            this.textHora.TabIndex = 8;
             // 
             // textMatricula
             // 
@@ -256,12 +232,40 @@
             this.textNombre.TabIndex = 13;
             this.textNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(134, 84);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(152, 21);
+            this.comboBox1.TabIndex = 23;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(134, 124);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(152, 21);
+            this.comboBox2.TabIndex = 24;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(134, 164);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(152, 21);
+            this.comboBox3.TabIndex = 25;
+            // 
             // asignarAccesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PI2.Properties.Resources.graficoback11;
             this.ClientSize = new System.Drawing.Size(633, 317);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label6);
@@ -269,12 +273,9 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textNombre);
             this.Controls.Add(this.textMatricula);
-            this.Controls.Add(this.pass);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textHora);
-            this.Controls.Add(this.textSalon);
             this.Controls.Add(this.textBoxRFID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
@@ -300,17 +301,17 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.TextBox pass;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textSalon;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textHora;
         private System.Windows.Forms.TextBox textMatricula;
         private System.Windows.Forms.TextBox textNombre;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
