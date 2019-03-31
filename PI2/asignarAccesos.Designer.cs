@@ -47,7 +47,9 @@
             this.textNombre = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.horaInicioTxt = new System.Windows.Forms.TextBox();
+            this.horaFinTxt = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +83,7 @@
             // 
             this.textBoxRFID.Location = new System.Drawing.Point(469, 210);
             this.textBoxRFID.Name = "textBoxRFID";
+            this.textBoxRFID.ReadOnly = true;
             this.textBoxRFID.Size = new System.Drawing.Size(121, 20);
             this.textBoxRFID.TabIndex = 8;
             this.textBoxRFID.TextChanged += new System.EventHandler(this.textBoxRFID_TextChanged);
@@ -210,9 +213,9 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(44, 159);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 24);
+            this.label7.Size = new System.Drawing.Size(100, 24);
             this.label7.TabIndex = 5;
-            this.label7.Text = "Hora";
+            this.label7.Text = "Hora Inicio";
             // 
             // textMatricula
             // 
@@ -248,14 +251,37 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(152, 21);
             this.comboBox2.TabIndex = 24;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
             // 
-            // comboBox3
+            // horaInicioTxt
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(134, 164);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(152, 21);
-            this.comboBox3.TabIndex = 25;
+            this.horaInicioTxt.Location = new System.Drawing.Point(167, 163);
+            this.horaInicioTxt.Name = "horaInicioTxt";
+            this.horaInicioTxt.ReadOnly = true;
+            this.horaInicioTxt.Size = new System.Drawing.Size(61, 20);
+            this.horaInicioTxt.TabIndex = 25;
+            this.horaInicioTxt.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // horaFinTxt
+            // 
+            this.horaFinTxt.Location = new System.Drawing.Point(167, 201);
+            this.horaFinTxt.Name = "horaFinTxt";
+            this.horaFinTxt.ReadOnly = true;
+            this.horaFinTxt.Size = new System.Drawing.Size(61, 20);
+            this.horaFinTxt.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(44, 196);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 24);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Hora finaliza";
             // 
             // asignarAccesos
             // 
@@ -263,7 +289,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PI2.Properties.Resources.graficoback11;
             this.ClientSize = new System.Drawing.Size(633, 317);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.horaFinTxt);
+            this.Controls.Add(this.horaInicioTxt);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
@@ -312,6 +340,8 @@
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox horaInicioTxt;
+        private System.Windows.Forms.TextBox horaFinTxt;
+        private System.Windows.Forms.Label label8;
     }
 }
