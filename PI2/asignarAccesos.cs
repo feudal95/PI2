@@ -168,31 +168,59 @@ namespace PI2
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
+            if (comboBox1.SelectedIndex < -1 || comboBox2.SelectedIndex < -1 || horaInicioTxt.Text=="" || horaFinTxt.Text == "" || textNombre.Text == "" || textMatricula.Text=="" || textBoxRFID.Text == "")
+            {
+                MessageBox.Show("Porfavor, complete todos ");
+            }
+            else
+            {
+
+                try
+                {
+
+
+                    //string query = "INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('"+ textBoxRFID.Text+ "', '"+ textMatricula.Text+ "', '"+ textNombre .Text+ "', '"+idDocente+"', '"+idsalon+"')";
+
+
+
+                    String consulta5 = string.Format("INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('" + textBoxRFID.Text + "', '" + textMatricula.Text + "', '" + textNombre.Text + "', '" + idDocente + "', '" + idsalon + "')");
+                    MySqlDataAdapter adaptador5 = new MySqlDataAdapter(consulta5, conn);
+                    MySqlCommandBuilder comando5 = new MySqlCommandBuilder(adaptador5);
+                    DataTable dt5 = new DataTable();
+                    adaptador5.Fill(dt5);
+                    MessageBox.Show("Alumno agregado exitosamente");
+                    comboBox1.SelectedIndex = -1;
+                    this.comboBox1.Items.Clear();
+                    comboBox2.SelectedIndex = -1;
+                    this.comboBox2.Items.Clear();
+                    horaInicioTxt.Text = "";
+                    horaFinTxt.Text = "";
+                    textNombre.Text = "";
+                    textMatricula.Text = "";
+                    textBoxRFID.Text = "";
+
+
+
+
+
+
+
+                    /* RECUERDA PONER RESTIRCCION AQUI PARA QUE NO PONGA DUPLICADOS*/
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("error" + ex.Message);
+                }
+
+
+                
+            }
+
             
-            try
-            {
-
-                
-                //string query = "INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('"+ textBoxRFID.Text+ "', '"+ textMatricula.Text+ "', '"+ textNombre .Text+ "', '"+idDocente+"', '"+idsalon+"')";
-                
-              
-                
-                String consulta5 = string.Format("INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('" + textBoxRFID.Text + "', '" + textMatricula.Text + "', '" + textNombre.Text + "', '" + idDocente + "', '" + idsalon + "')");
-                MySqlDataAdapter adaptador5 = new MySqlDataAdapter(consulta5, conn);
-                MySqlCommandBuilder comando5 = new MySqlCommandBuilder(adaptador5);
-                DataTable dt5 = new DataTable();
-                adaptador5.Fill(dt5);
-                MessageBox.Show("Alumno agregado exitosamente");
-                
-                
-                /* RECUERDA PONER RESTIRCCION AQUI PARA QUE NO PONGA DUPLICADOS*/
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error" + ex.Message);
-            }
             
         }
         
