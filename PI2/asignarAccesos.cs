@@ -44,8 +44,8 @@ namespace PI2
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             CheckForIllegalCrossThreadCalls = false;
-            //  serialPort1.Open();
-            //serialPort1.DataReceived += OnDataReceived;
+            serialPort1.Open();
+            serialPort1.DataReceived += OnDataReceived;
             matri = mat;
             FillCombo();
         }
