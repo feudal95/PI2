@@ -23,16 +23,30 @@ namespace PI2
         string entrada = "";
 
         string matri = "";
+        string idsalon ="";
+        string idDocente = "";
         string constring = "server=localhost;user id=root;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         public asignarAccesos(string mat)
         {
+
+            
             InitializeComponent();
+
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreDocente , id FROM docentes WHERE matricula = '" + mat + "';", conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            string welcom = dt.Rows[0][0].ToString();
+            idDocente = dt.Rows[0][1].ToString();
+            
+            name.Text = "Docente: " + welcom;
+
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             CheckForIllegalCrossThreadCalls = false;
             //  serialPort1.Open();
             //serialPort1.DataReceived += OnDataReceived;
-            string matri = mat;
+            matri = mat;
             FillCombo();
         }
 
@@ -110,6 +124,7 @@ namespace PI2
             string select = this.comboBox2.GetItemText(this.comboBox2.SelectedItem).ToString();
             string select1;
             select1 = Regex.Replace(select, "[^0-9]+", string.Empty);
+            idsalon = select1;
             string Query = "SELECT horaInicio, horaFinal FROM salon WHERE idsalon = '"+select1+"';";
             MySqlConnection conDatabase = new MySqlConnection(constring);
             MySqlCommand cmdDataBase = new MySqlCommand(Query, conDatabase);
@@ -153,24 +168,24 @@ namespace PI2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
-                string selectt = this.comboBox1.GetItemText(this.comboBox1.SelectedItem).ToString();
-                string idUser;
-                idUser = Regex.Replace(selectt, "[^0-9]+", string.Empty);
 
-
-                MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=seguridad3;SslMode=none");
-                String consulta5 = string.Format("INSERT INTO `seguridad3`.`accesos` (`usuarios_ID`, `empresa_ID`, `RFID`, `patrones_ID`, `pass`) VALUES ('"+ idUser + "', '"+ textBox_idEmp.Text + "', '"+textBoxRFID.Text+"', '"+ textBox_idP.Text +"', '"+pass.Text+"');");
+                
+                //string query = "INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('"+ textBoxRFID.Text+ "', '"+ textMatricula.Text+ "', '"+ textNombre .Text+ "', '"+idDocente+"', '"+idsalon+"')";
+                
+              
+                
+                String consulta5 = string.Format("INSERT INTO `asistencia`.`alumnos` (`RFID`, `matricula`, `nombreAlumno`, `docentes_id`, `salon_idsalon`) VALUES ('" + textBoxRFID.Text + "', '" + textMatricula.Text + "', '" + textNombre.Text + "', '" + idDocente + "', '" + idsalon + "')");
                 MySqlDataAdapter adaptador5 = new MySqlDataAdapter(consulta5, conn);
                 MySqlCommandBuilder comando5 = new MySqlCommandBuilder(adaptador5);
                 DataTable dt5 = new DataTable();
                 adaptador5.Fill(dt5);
-                MessageBox.Show("Agregado");
-
+                MessageBox.Show("Alumno agregado exitosamente");
                 
                 
+                /* RECUERDA PONER RESTIRCCION AQUI PARA QUE NO PONGA DUPLICADOS*/
 
 
             }
@@ -178,7 +193,7 @@ namespace PI2
             {
                 MessageBox.Show("error" + ex.Message);
             }
-            */
+            
         }
         
 
@@ -220,6 +235,7 @@ namespace PI2
             th = new Thread(openNewForm);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
+
         }
 
         private void textBoxRFID_TextChanged(object sender, EventArgs e)

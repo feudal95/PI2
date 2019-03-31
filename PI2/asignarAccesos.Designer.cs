@@ -50,6 +50,7 @@
             this.horaInicioTxt = new System.Windows.Forms.TextBox();
             this.horaFinTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.name = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -83,7 +84,6 @@
             // 
             this.textBoxRFID.Location = new System.Drawing.Point(469, 210);
             this.textBoxRFID.Name = "textBoxRFID";
-            this.textBoxRFID.ReadOnly = true;
             this.textBoxRFID.Size = new System.Drawing.Size(121, 20);
             this.textBoxRFID.TabIndex = 8;
             this.textBoxRFID.TextChanged += new System.EventHandler(this.textBoxRFID_TextChanged);
@@ -138,7 +138,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(44, 84);
+            this.label5.Location = new System.Drawing.Point(42, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 24);
             this.label5.TabIndex = 14;
@@ -199,7 +199,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(44, 123);
+            this.label1.Location = new System.Drawing.Point(42, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 24);
             this.label1.TabIndex = 5;
@@ -221,7 +221,6 @@
             // 
             this.textMatricula.Location = new System.Drawing.Point(469, 121);
             this.textMatricula.Name = "textMatricula";
-            this.textMatricula.PasswordChar = '*';
             this.textMatricula.Size = new System.Drawing.Size(121, 20);
             this.textMatricula.TabIndex = 13;
             this.textMatricula.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -230,7 +229,6 @@
             // 
             this.textNombre.Location = new System.Drawing.Point(469, 83);
             this.textNombre.Name = "textNombre";
-            this.textNombre.PasswordChar = '*';
             this.textNombre.Size = new System.Drawing.Size(121, 20);
             this.textNombre.TabIndex = 13;
             this.textNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -283,12 +281,25 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Hora finaliza";
             // 
+            // name
+            // 
+            this.name.AutoSize = true;
+            this.name.BackColor = System.Drawing.Color.Transparent;
+            this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name.ForeColor = System.Drawing.SystemColors.Menu;
+            this.name.Location = new System.Drawing.Point(434, 18);
+            this.name.Name = "name";
+            this.name.Size = new System.Drawing.Size(87, 25);
+            this.name.TabIndex = 28;
+            this.name.Text = "Nombre";
+            // 
             // asignarAccesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PI2.Properties.Resources.graficoback11;
             this.ClientSize = new System.Drawing.Size(633, 317);
+            this.Controls.Add(this.name);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.horaFinTxt);
             this.Controls.Add(this.horaInicioTxt);
@@ -343,5 +354,6 @@
         private System.Windows.Forms.TextBox horaInicioTxt;
         private System.Windows.Forms.TextBox horaFinTxt;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label name;
     }
 }
