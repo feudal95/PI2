@@ -25,8 +25,8 @@ namespace PI2
         string matri = "";
         string idsalon ="";
         string idDocente = "";
-        string constring = "server=localhost;user id=root;persistsecurityinfo=True;database=asistencia;SslMode=none";
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+        string constring = "server=localhost;user id=root;pwd=contra;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         public asignarAccesos(string mat)
         {
 
@@ -263,6 +263,7 @@ namespace PI2
             th = new Thread(openNewForm);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
+            serialPort1.Close();
 
         }
 

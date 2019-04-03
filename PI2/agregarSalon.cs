@@ -23,12 +23,20 @@ namespace PI2
         string jue = "0";
         string vie = "0";
         string sab = "0";
+        string horaeoriginal = "";
+        string horaforiginal = "";
+        string saltem = "";
+        string mattem = "";
+        Boolean centinela = false;
+       
 
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         public agregarSalon(string welcm)
         {
             mat = welcm;
             InitializeComponent();
+            button2.Visible = false;
             MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreDocente, id from docentes WHERE matricula = '" + welcm + "';", conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -172,6 +180,21 @@ namespace PI2
                 MessageBox.Show("¡Salon agregado exitosamente!");
 
                 fill();
+
+                salon.Text = "";
+                materia.Text = "";
+                semestre.Text = "";
+                hF.Text = "";
+                minF.Text = "";
+                hE.Text = "";
+                minE.Text = "";
+                lunes.Checked = false;
+                martes.Checked = false;
+                miercoles.Checked = false;
+                jueves.Checked = false;
+                viernes.Checked = false;
+                sabado.Checked = false;
+                centinela = false;
                 return;
 
             }
@@ -509,8 +532,107 @@ namespace PI2
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
 
-            checarEmpalme();
+            
+
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                string dia = "";
+                dataGridView1.CurrentRow.Selected = true;
+                salon.Text = dataGridView1.Rows[e.RowIndex].Cells["num_salon"].FormattedValue.ToString();
+                saltem = salon.Text;
+                materia.Text = dataGridView1.Rows[e.RowIndex].Cells["materia"].FormattedValue.ToString();
+                mattem = materia.Text;
+                horaeoriginal= dataGridView1.Rows[e.RowIndex].Cells["horaInicio"].FormattedValue.ToString();
+                hE.Text = dataGridView1.Rows[e.RowIndex].Cells["horaInicio"].FormattedValue.ToString().Substring(0,2);
+                Console.WriteLine(hE.Text);
+                string temp = dataGridView1.Rows[e.RowIndex].Cells["horaInicio"].FormattedValue.ToString().Substring(3,3);
+                temp = temp.Replace(":", "");
+                minE.Text =temp;
+                horaforiginal= dataGridView1.Rows[e.RowIndex].Cells["horaFinal"].FormattedValue.ToString();
+                hF.Text = dataGridView1.Rows[e.RowIndex].Cells["horaFinal"].FormattedValue.ToString().Substring(0, 2);
+                temp = dataGridView1.Rows[e.RowIndex].Cells["horaFinal"].FormattedValue.ToString().Substring(2,4);
+                temp = temp.Replace(":", "");
+                minF.Text = temp;
+                semestre.Text = dataGridView1.Rows[e.RowIndex].Cells["semestre"].FormattedValue.ToString();
+
+
+
+                dia = dataGridView1.Rows[e.RowIndex].Cells["lunes"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    lunes.Checked = true;
+                }
+                dia = dataGridView1.Rows[e.RowIndex].Cells["martes"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    martes.Checked = true;
+                }
+                dia = dataGridView1.Rows[e.RowIndex].Cells["miercoles"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    miercoles.Checked = true;
+                }
+                dia = dataGridView1.Rows[e.RowIndex].Cells["jueves"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    jueves.Checked = true;
+                }
+                dia = dataGridView1.Rows[e.RowIndex].Cells["viernes"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    viernes.Checked = true;
+                }
+                dia = dataGridView1.Rows[e.RowIndex].Cells["sabado"].FormattedValue.ToString();
+                if (dia.Equals("1"))
+                {
+                    sabado.Checked = true;
+                }
+
+                if (agregarSalon.InputBox() == DialogResult.OK)
+                {
+                    try
+                    {
+                       String query = string.Format("DELETE FROM `asistencia`.`salon` WHERE num_salon='" + saltem + "' AND materia='" + mattem + "';");
+                        MessageBox.Show(query);
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                        MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+                        MessageBox.Show("¡Datos borrados exitosamente!");
+
+                        fill();
+
+                        salon.Text = "";
+                        materia.Text = "";
+                        semestre.Text = "";
+                        hF.Text = "";
+                        minF.Text = "";
+                        hE.Text = "";
+                        minE.Text = "";
+                        lunes.Checked = false;
+                        martes.Checked = false;
+                        miercoles.Checked = false;
+                        jueves.Checked = false;
+                        viernes.Checked = false;
+                        sabado.Checked = false;
+                        centinela = false;
+                        button2.Visible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("error al borrar datos" + ex.Message);
+                        return;
+                    }
+                }
+                else
+                {
+                    button2.Visible = true;
+                }
+                    
+            }
             
         }
 
@@ -958,10 +1080,237 @@ namespace PI2
                 }
 
 
+                if (centinela == false)
+                {
+                    ingresarDatos();
+                }
+                else
+                {
 
-                //   ingresarDatos();
+                    try
+                    {
+                        String query = string.Format("UPDATE `asistencia`.`salon` SET num_salon='" + salon.Text + "', materia='" + materia.Text + "', semestre='" + semestre.Text + "', horaFinal='" + hF.Text + ":" + minF.Text + ":00'," + " horaInicio='" + hE.Text + ":" + minE.Text + ":00'" + ", lunes='" + lun + "', martes='" + mar + "', miercoles='" + mie + "', jueves='" + jue + "', viernes='" + vie + "', sabado='" + sab + "' " + "WHERE num_salon='" + saltem + "' AND materia='" + mattem + "';");
+                        MessageBox.Show(query);
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                        MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+                        MessageBox.Show("¡Datos actualizados exitosamente!");
+
+                        fill();
+
+                        salon.Text = "";
+                        materia.Text = "";
+                        semestre.Text = "";
+                        hF.Text = "";
+                        minF.Text = "";
+                        hE.Text = "";
+                        minE.Text = "";
+                        lunes.Checked = false;
+                        martes.Checked = false;
+                        miercoles.Checked = false;
+                        jueves.Checked = false;
+                        viernes.Checked = false;
+                        sabado.Checked = false;
+                        centinela = false;
+                        button2.Visible = false;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("error insertar datos" + ex.Message);
+                        return;
+                    }
+                    return;
+
+
+                }
+                 
             }
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            centinela = true;
+
+            if (salon.Text == "" || materia.Text == "" || semestre.Text == "" || hE.Text == "" || minE.Text == "" || hF.Text == "" || minE.Text == "")
+            {
+                MessageBox.Show("Por favor llene todos los campos");
+            }
+            else
+            {
+
+
+
+                int i = 0;
+                foreach (Control c in groupBox1.Controls)
+                {
+
+                    if (c is CheckBox)
+                    {
+                        CheckBox cb = (CheckBox)c;
+
+                        if (cb.Checked == false)
+                        {
+                            i = i + 1;
+                            if (i == 6)
+                            {
+
+                                MessageBox.Show("Por favor, seleccione los dias en los que se impartira la clase para que se agregue el grupo.");
+
+
+                            }
+
+
+
+
+
+
+
+
+                        }
+                        else
+                        {
+                            string texto = hE.Text + ":" + minE.Text + ":00";
+                            Console.WriteLine(texto);
+                            Console.WriteLine(horaeoriginal);
+                            if (!(texto.Equals(horaeoriginal)))
+                            {
+                                checarEmpalme();
+                            }
+
+                            else
+                            {
+                                try
+                                {
+                                    String query = string.Format("UPDATE `asistencia`.`salon` SET num_salon='" + salon.Text + "', materia='" + materia.Text + "', semestre='" + semestre.Text + "', horaFinal='" + hF.Text + ":" + minF.Text + ":00'," + " horaInicio='" + hE.Text + ":" + minE.Text + ":00'" + ", lunes='" + lun + "', martes='" + mar + "', miercoles='" + mie + "', jueves='" + jue + "', viernes='" + vie + "', sabado='" + sab + "' " + "WHERE num_salon='" + saltem + "' AND materia='" + mattem + "';");
+                                    MessageBox.Show(query);
+                                    MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                                    MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                                    DataTable dt = new DataTable();
+                                    adaptador.Fill(dt);
+
+                                    MessageBox.Show("¡Datos actualizados exitosamente!");
+
+                                    fill();
+
+                                    salon.Text = "";
+                                    materia.Text = "";
+                                    semestre.Text = "";
+                                    hF.Text = "";
+                                    minF.Text = "";
+                                    hE.Text = "";
+                                    minE.Text = "";
+                                    lunes.Checked = false;
+                                    martes.Checked = false;
+                                    miercoles.Checked = false;
+                                    jueves.Checked = false;
+                                    viernes.Checked = false;
+                                    sabado.Checked = false;
+                                    centinela = false;
+                                    button2.Visible = false;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("error insertar datos" + ex.Message);
+                                    return;
+                                }
+                            }
+                            return;
+                            //MessageBox.Show("TODO OKAY PARA QUERY");
+
+
+
+
+                            /*
+                            try
+                            {
+                                String query = string.Format("INSERT INTO `asistencia`.`salon` (`num_salon`, `materia`, `horaFinal`, `horaInicio`, `semestre`, `lunes`, `martes`, `miercoles`, `jueves`, `viernes`, `sabado`, `docentes_id`) VALUES ('" + salon.Text + "', '" + materia.Text + "', '" + hF.Text + ":" + minF.Text + ":00', '" + hE.Text + ":" + minE.Text + ":00', '" + semestre.Text + "','" + lun + "', '" + mar + "', '" + mie + "', '" + jue + "', '" + vie + "','" + sab + "', '" + docenteID + "');");
+                                MessageBox.Show(query);
+                                MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conn);
+                                MySqlCommandBuilder comando = new MySqlCommandBuilder(adaptador);
+                                DataTable dt = new DataTable();
+                                adaptador.Fill(dt);
+
+                                MessageBox.Show("¡Salon agregado exitosamente!");
+
+                                fill();
+                                return;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("error insertar datos" + ex.Message);
+                                return;
+                            }
+                            */
+
+                        }
+
+
+
+
+                    }
+                }
+            }
+        }
+
+        private void openNewForm()
+        {
+
+            Application.Run(new menu(mat));
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+
+        public static DialogResult InputBox()
+        {
+            Form form = new Form();
+            Label label = new Label();
+  
+            Button buttonBorrar = new Button();
+            Button buttonAct = new Button();
+
+ 
+            label.Text = "¿Desea borrar o actualizar el registro?";
+
+
+            buttonBorrar.Text = "Borrar";
+            buttonAct.Text = "Actualizar";
+            buttonBorrar.DialogResult = DialogResult.OK;
+            buttonAct.DialogResult = DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            buttonBorrar.SetBounds(228, 72, 75, 23);
+            buttonAct.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            buttonBorrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonAct.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, buttonBorrar, buttonAct });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+
+            form.AcceptButton = buttonBorrar;
+            form.CancelButton = buttonAct;
+
+
+            DialogResult dialogResult = form.ShowDialog();
+            return dialogResult;
         }
     }
 }

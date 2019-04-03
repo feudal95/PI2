@@ -15,7 +15,7 @@ namespace PI2
     public partial class menu : Form
     {
         Thread th;
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         string mat = "";
         
         public menu(string welcm)
