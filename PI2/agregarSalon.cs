@@ -36,7 +36,8 @@ namespace PI2
         {
             mat = welcm;
             InitializeComponent();
-            button2.Visible = false;
+            button2.Enabled = false;
+            button4.Enabled = false;
             MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreDocente, id from docentes WHERE matricula = '" + welcm + "';", conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -619,7 +620,7 @@ namespace PI2
                         viernes.Checked = false;
                         sabado.Checked = false;
                         centinela = false;
-                        button2.Visible = false;
+                        button2.Enabled = false;
                     }
                     catch (Exception ex)
                     {
@@ -629,7 +630,9 @@ namespace PI2
                 }
                 else
                 {
-                    button2.Visible = true;
+                    button4.Enabled = true;
+                    button1.Enabled = false;
+                    button2.Enabled = true;
                 }
                     
             }
@@ -1114,7 +1117,8 @@ namespace PI2
                         viernes.Checked = false;
                         sabado.Checked = false;
                         centinela = false;
-                        button2.Visible = false;
+                        button2.Enabled = false;
+                        button4.Enabled = false;
 
                     }
                     catch (Exception ex)
@@ -1210,7 +1214,7 @@ namespace PI2
                                     viernes.Checked = false;
                                     sabado.Checked = false;
                                     centinela = false;
-                                    button2.Visible = false;
+                                    button2.Enabled = false;
                                 }
                                 catch (Exception ex)
                                 {
@@ -1311,6 +1315,13 @@ namespace PI2
 
             DialogResult dialogResult = form.ShowDialog();
             return dialogResult;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
+            button4.Enabled = false;
+            button1.Enabled = true;
         }
     }
 }
