@@ -25,9 +25,13 @@ namespace PI2
         string matri = "";
         public AgregarAlumnos(string mat)
         {
+            DateTime dateValue = DateTime.Now;
+            int aa = ((int)dateValue.DayOfWeek);
+            string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            MessageBox.Show(aa.ToString());
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-                  serialPort1.Open();
+            serialPort1.Open();
             serialPort1.DataReceived += OnDataReceived;
             string matri = mat;
         }
