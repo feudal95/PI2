@@ -31,7 +31,7 @@ namespace PI2
        
 
 
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         public agregarSalon(string welcm)
         {
             mat = welcm;

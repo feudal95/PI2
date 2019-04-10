@@ -25,8 +25,8 @@ namespace PI2
         string matri = "";
         string idsalon ="";
         string idDocente = "";
-        string constring = "server=localhost;user id=root;pwd=contra;persistsecurityinfo=True;database=asistencia;SslMode=none";
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
+        string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         public asignarAccesos(string mat)
         {
 
