@@ -20,20 +20,121 @@ namespace PI2
     {
         Thread th;
 
+        string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         string entrada ="";
-
+        string dia = "";
         string matri = "";
         public AgregarAlumnos(string mat)
         {
-            DateTime dateValue = DateTime.Now;
-            int aa = ((int)dateValue.DayOfWeek);
-            string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            MessageBox.Show(aa.ToString());
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            serialPort1.Open();
-            serialPort1.DataReceived += OnDataReceived;
-            string matri = mat;
+            DateTime dateValue = DateTime.Now;
+            int aa = ((int)dateValue.DayOfWeek);
+
+            switch (aa)
+            {
+                case 0:
+
+                    dia = "domingo";
+                    break;
+
+                case 1:
+                    dia = "lunes";
+                    break;
+
+                case 2:
+                    dia = "martes";
+                    break;
+
+                case 3:
+                    dia = "miercoles";
+                    break;
+
+                case 4:
+                    dia = "jueves";
+                    break;
+
+                case 5:
+                    dia = "viernes";
+                    break;
+
+                case 6:
+
+                    dia = "sabado";
+                    break;
+
+                default:
+                    MessageBox.Show("Error");
+                    break;
+
+
+            }
+
+            MessageBox.Show(dia);
+            //string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            string hora = DateTime.Now.ToString("HH:mm:ss");
+            DateTime horaActual = new DateTime();
+            DateTime horaInicia = new DateTime();
+            DateTime horaFinaliza = new DateTime();
+            horaActual = DateTime.ParseExact(hora, "H:m:s", null);
+            
+            
+
+
+
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT idsalon, num_salon, materia, horaInicio, horaFinal  FROM salon  WHERE horaFinal >  TIME_FORMAT(NOW(), '%T') AND "+dia+" = '1' ORDER BY horaFinal  LIMIT 1;", conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+
+                string id = dt.Rows[0][0].ToString();
+                string num_sal = dt.Rows[0][1].ToString();
+                string mate = dt.Rows[0][2].ToString();
+                string bdHoraI = dt.Rows[0][3].ToString();
+                string bdHoraF = dt.Rows[0][4].ToString();
+                horaInicia = DateTime.ParseExact(bdHoraI, "H:m:s", null);
+                horaFinaliza = DateTime.ParseExact(bdHoraF, "H:m:s", null);
+                
+                if (horaActual.TimeOfDay < horaInicia.TimeOfDay) {
+
+
+                    MessageBox.Show("La clase " + mate + " Inicia a las: " + bdHoraI + ". Por favor Vuelva a intentar cuando sea la hora de clase");
+                    
+
+
+
+                } else if (horaActual.TimeOfDay >= horaInicia.TimeOfDay && horaActual.TimeOfDay <= horaFinaliza.TimeOfDay)
+                {
+                    MessageBox.Show("La clase a comenzando, por favor pase su credencial en el lector");
+                    materia.Text = "Matería: " + mate;
+                    salon.Text = "Salon: " +num_sal;
+                    horaini.Text ="Hora que inicia: " + bdHoraI;
+                    horaFina.Text = "Hora que finaliza: " +bdHoraF;
+                    
+
+                }
+
+                
+            }
+            else
+            {
+                MessageBox.Show("No hay clases para el dia de hoy");
+
+            }
+
+
+            
+
+            
+            
+            
+            
+
+            //serialPort1.Open();
+            //serialPort1.DataReceived += OnDataReceived;
+            matri = mat;
         }
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
