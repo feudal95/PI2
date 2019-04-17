@@ -77,7 +77,6 @@
             // 
             this.textBoxRFID.Location = new System.Drawing.Point(129, 83);
             this.textBoxRFID.Name = "textBoxRFID";
-            this.textBoxRFID.ReadOnly = true;
             this.textBoxRFID.Size = new System.Drawing.Size(121, 20);
             this.textBoxRFID.TabIndex = 8;
             this.textBoxRFID.TextChanged += new System.EventHandler(this.textBoxRFID_TextChanged);
@@ -146,9 +145,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.Menu;
             this.label6.Location = new System.Drawing.Point(41, 18);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(267, 39);
+            this.label6.Size = new System.Drawing.Size(318, 39);
             this.label6.TabIndex = 20;
-            this.label6.Text = "Agregar Alumno";
+            this.label6.Text = "Toma de asistencia";
             // 
             // pictureBox3
             // 

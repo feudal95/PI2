@@ -29,8 +29,8 @@ namespace PI2
         public AgregarAlumnos(string mat)
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
-            serialPort1.Open();
+           // CheckForIllegalCrossThreadCalls = false;
+           // serialPort1.Open();
             serialPort1.DataReceived += OnDataReceived;
             DateTime dateValue = DateTime.Now;
             int aa = ((int)dateValue.DayOfWeek);
@@ -230,24 +230,55 @@ namespace PI2
             textNombre.Text = "";
             textMatricula.Text = "";
             string RFID = textBoxRFID.Text.ToString();
-            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreAlumno, matricula, idalumnos FROM alumnos WHERE RFID = '" + RFID + "';", conn);
+            MessageBox.Show(RFID);
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreAlumno, matricula, idalumnos FROM alumnos WHERE RFID = '" + RFID + "' AND salon_idsalon = '" + idSalon + "';", conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows.Count > 0)
             {
+                MessageBox.Show("llegaste aqui");
                 textNombre.Text = dt.Rows[0][0].ToString();
                 textMatricula.Text = dt.Rows[0][1].ToString();
                 string id = dt.Rows[0][2].ToString();
                 string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                 //string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                 //MessageBox.Show("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '"+ hora + "', '"+1+"', '"+id+"');");
-                sda = new MySqlDataAdapter("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '" + hora + "', '" + 1 + "', '" + id + "');", conn);
                 
+                MySqlDataAdapter sda1 = new MySqlDataAdapter("SELECT salon_idsalon, matricula, fecha, asistencia FROM asistencia WHERE matricula = '" + textMatricula.Text+"' AND salon_idsalon = '"+idSalon+"';", conn);
+                DataTable dt1 = new DataTable();
+                sda1.Fill(dt1);
+
+                if (dt1.Rows.Count > 0 ) {
+                    MessageBox.Show("llegaste aqui");
+                    string bdIDsalon = dt1.Rows[0][0].ToString();
+                    string bdFecha = dt1.Rows[0][2].ToString();
+                    string asistencia = dt1.Rows[0][3].ToString();
+                    DateTime oDate = Convert.ToDateTime(bdFecha);
+                    string fechaBD = oDate.ToString("yyyy/MM/dd");
+                    MessageBox.Show(fechaBD);
+                    string fechaSys = DateTime.Now.ToString("yyyy/MM/dd");
+                    MessageBox.Show(fechaSys);
+
+                    if (fechaBD == fechaSys && bdIDsalon == idSalon && asistencia == "1")
+                    {
+                        MessageBox.Show("la asistencia del alumno ya fue tomada");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("construccion de asistencia en progreso");
+                        /*MySqlDataAdapter sda2 = new MySqlDataAdapter("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '" + hora + "', '" + 1 + "', '" + id + "');", conn);
+                        DataTable dt2 = new DataTable();
+                        sda2.Fill(dt2);
+                        MessageBox.Show("OKAY");
+                        */
+                        return;
+                    }
+                }
+                MessageBox.Show("aqui se pondra la asistencia del alumno que no este en la tabla");
+                sda = new MySqlDataAdapter("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '" + hora + "', '" + 1 + "', '" + id + "');", conn);
                 sda.Fill(dt);
                 MessageBox.Show("OKAY");
-
-
-
             }
             else
             {
