@@ -202,7 +202,6 @@
             // 
             this.textMatricula.Location = new System.Drawing.Point(129, 162);
             this.textMatricula.Name = "textMatricula";
-            this.textMatricula.PasswordChar = '*';
             this.textMatricula.ReadOnly = true;
             this.textMatricula.Size = new System.Drawing.Size(121, 20);
             this.textMatricula.TabIndex = 13;
@@ -212,7 +211,6 @@
             // 
             this.textNombre.Location = new System.Drawing.Point(129, 124);
             this.textNombre.Name = "textNombre";
-            this.textNombre.PasswordChar = '*';
             this.textNombre.ReadOnly = true;
             this.textNombre.Size = new System.Drawing.Size(121, 20);
             this.textNombre.TabIndex = 13;

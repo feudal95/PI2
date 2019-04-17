@@ -23,12 +23,15 @@ namespace PI2
         string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
         MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         string entrada ="";
+        string idSalon = "";
         string dia = "";
         string matri = "";
         public AgregarAlumnos(string mat)
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            serialPort1.Open();
+            serialPort1.DataReceived += OnDataReceived;
             DateTime dateValue = DateTime.Now;
             int aa = ((int)dateValue.DayOfWeek);
 
@@ -89,7 +92,7 @@ namespace PI2
             if (dt.Rows.Count > 0)
             {
 
-                string id = dt.Rows[0][0].ToString();
+                idSalon = dt.Rows[0][0].ToString();
                 string num_sal = dt.Rows[0][1].ToString();
                 string mate = dt.Rows[0][2].ToString();
                 string bdHoraI = dt.Rows[0][3].ToString();
@@ -112,11 +115,12 @@ namespace PI2
                     salon.Text = "Salon: " +num_sal;
                     horaini.Text ="Hora que inicia: " + bdHoraI;
                     horaFina.Text = "Hora que finaliza: " +bdHoraF;
-                    
+
+
 
                 }
 
-                
+
             }
             else
             {
@@ -139,7 +143,7 @@ namespace PI2
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-             entrada = serialPort1.ReadLine();
+            entrada = serialPort1.ReadLine();
             serialPort1.Close();
             textBoxRFID.Text = entrada;
             serialPort1.Open();
@@ -223,7 +227,32 @@ namespace PI2
 
         private void textBoxRFID_TextChanged(object sender, EventArgs e)
         {
+            textNombre.Text = "";
+            textMatricula.Text = "";
+            string RFID = textBoxRFID.Text.ToString();
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT nombreAlumno, matricula, idalumnos FROM alumnos WHERE RFID = '" + RFID + "';", conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                textNombre.Text = dt.Rows[0][0].ToString();
+                textMatricula.Text = dt.Rows[0][1].ToString();
+                string id = dt.Rows[0][2].ToString();
+                string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                //string hora = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                //MessageBox.Show("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '"+ hora + "', '"+1+"', '"+id+"');");
+                sda = new MySqlDataAdapter("INSERT INTO `asistencia`.`asistencia` (`salon_idsalon`, `matricula`, `fecha`, `asistencia`, `alumnos_idalumnos`) VALUES ('" + idSalon + "', '" + textMatricula.Text + "', '" + hora + "', '" + 1 + "', '" + id + "');", conn);
+                
+                sda.Fill(dt);
+                MessageBox.Show("OKAY");
 
+
+
+            }
+            else
+            {
+                MessageBox.Show("Alumno no registrado o no pertence a este grupo");
+            }
         }
     }
 }
