@@ -77,6 +77,7 @@
             // 
             this.textBoxRFID.Location = new System.Drawing.Point(129, 83);
             this.textBoxRFID.Name = "textBoxRFID";
+            this.textBoxRFID.ReadOnly = true;
             this.textBoxRFID.Size = new System.Drawing.Size(121, 20);
             this.textBoxRFID.TabIndex = 8;
             this.textBoxRFID.TextChanged += new System.EventHandler(this.textBoxRFID_TextChanged);

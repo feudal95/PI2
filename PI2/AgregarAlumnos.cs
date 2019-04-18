@@ -29,8 +29,8 @@ namespace PI2
         public AgregarAlumnos(string mat)
         {
             InitializeComponent();
-           // CheckForIllegalCrossThreadCalls = false;
-           // serialPort1.Open();
+            CheckForIllegalCrossThreadCalls = false;
+            serialPort1.Open();
             serialPort1.DataReceived += OnDataReceived;
             DateTime dateValue = DateTime.Now;
             int aa = ((int)dateValue.DayOfWeek);

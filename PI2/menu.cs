@@ -94,5 +94,20 @@ namespace PI2
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm4);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+        private void openNewForm4()
+        {
+
+            Application.Run(new Reporte(mat));
+
+        }
+
     }
 }
