@@ -16,17 +16,17 @@ namespace PI2
 {
 
     
-    public partial class AgregarAlumnos : Form
+    public partial class registroAsistencia : Form
     {
         Thread th;
 
-        string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+        string constring = "server=localhost;user id=root;pwd=contra;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         string entrada ="";
         string idSalon = "";
         string dia = "";
         string matri = "";
-        public AgregarAlumnos(string mat)
+        public registroAsistencia(string mat)
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;

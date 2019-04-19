@@ -31,7 +31,7 @@ namespace PI2
        
 
 
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         public agregarSalon(string welcm)
         {
             mat = welcm;
@@ -121,6 +121,9 @@ namespace PI2
 
 
                         } else{
+
+                            horaeoriginal = "";
+                            horaforiginal = "";
 
                             checarEmpalme();
                             return;
@@ -663,7 +666,8 @@ namespace PI2
             MessageBox.Show("Hora ingrear empieza"+ horaIngresar.ToString("H:m:s"));
             MessageBox.Show("Hora ingrear termina" + horaIngresarTermina.ToString("H:m:s"));
 
-
+            string texto = hE.Text + ":" + minE.Text + ":00";
+            string texto2 = hF.Text + ":" + minF.Text + ":00";
 
             if (hE.Text != "") { 
                 if (lun == "1") {
@@ -674,8 +678,15 @@ namespace PI2
                         {
 
 
+         
+
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -740,10 +751,15 @@ namespace PI2
                     {
                         for (int i = 10; i < dataGridView1.Columns.Count; i++)
                         {
-
+     
 
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -814,6 +830,11 @@ namespace PI2
 
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -880,10 +901,15 @@ namespace PI2
                     {
                         for (int i = 10; i < dataGridView1.Columns.Count; i++)
                         {
-
+     
 
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -950,10 +976,15 @@ namespace PI2
                     {
                         for (int i = 10; i < dataGridView1.Columns.Count; i++)
                         {
-
+           
 
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -1022,8 +1053,14 @@ namespace PI2
                         {
 
 
+
                             if (row.Cells[2].Value != null)
                             {
+
+                                if (row.Cells[2].Value.ToString().Equals(horaeoriginal) && texto.Equals(horaeoriginal) || (row.Cells[3].Value.ToString().Equals(horaforiginal) && texto2.Equals(horaforiginal)))
+                                {
+                                    continue;
+                                }
                                 //MessageBox.Show(row.Cells[2].Value.ToString());
                                 h = row.Cells[2].Value.ToString();
                                 termina = row.Cells[3].Value.ToString();
@@ -1178,9 +1215,10 @@ namespace PI2
                         else
                         {
                             string texto = hE.Text + ":" + minE.Text + ":00";
+                            string texto2 = hF.Text + ":" + minF.Text + ":00";
                             Console.WriteLine(texto);
                             Console.WriteLine(horaeoriginal);
-                            if (!(texto.Equals(horaeoriginal)))
+                            if (!(texto.Equals(horaeoriginal))|| !(texto2.Equals(horaforiginal)))
                             {
                                 checarEmpalme();
                             }

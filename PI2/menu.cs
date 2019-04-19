@@ -15,7 +15,7 @@ namespace PI2
     public partial class menu : Form
     {
         Thread th;
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
         string mat = "";
         
         public menu(string welcm)
@@ -68,14 +68,14 @@ namespace PI2
         private void openNewForm2()
         {
 
-            Application.Run(new asignarAccesos(mat));
+            Application.Run(new registroAsistencia(mat));
 
         }
 
         private void openNewForm3()
         {
 
-            Application.Run(new AgregarAlumnos(mat));
+            Application.Run(new registroAlumnos(mat));
 
         }
 
@@ -109,5 +109,20 @@ namespace PI2
 
         }
 
+
+        private void openNewForm5()
+        {
+
+            Application.Run(new ModAlumno(mat));
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm5);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
     }
 }

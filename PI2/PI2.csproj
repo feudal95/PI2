@@ -50,23 +50,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModAlumno.Designer.cs">
+      <DependentUpon>ModAlumno.cs</DependentUpon>
+    </Compile>
     <Compile Include="agregarSalon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="agregarSalon.Designer.cs">
       <DependentUpon>agregarSalon.cs</DependentUpon>
     </Compile>
-    <Compile Include="AgregarAlumnos.cs">
+    <Compile Include="registroAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AgregarAlumnos.Designer.cs">
-      <DependentUpon>AgregarAlumnos.cs</DependentUpon>
+    <Compile Include="registroAsistencia.Designer.cs">
+      <DependentUpon>registroAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="asignarAccesos.cs">
+    <Compile Include="registroAlumnos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="asignarAccesos.Designer.cs">
-      <DependentUpon>asignarAccesos.cs</DependentUpon>
+    <Compile Include=".Designer.cs">
+      <DependentUpon>registroAlumnos.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Form1.cs">
@@ -95,13 +102,18 @@
     <Compile Include="salon.Designer.cs">
       <DependentUpon>salon.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AgregarAlumnos.resx">
-      <DependentUpon>AgregarAlumnos.cs</DependentUpon>
+    <EmbeddedResource Include=".Designer.resx">
+      <DependentUpon>.Designer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registroAsistencia.resx">
+      <DependentUpon>registroAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModAlumno.resx">
+      <DependentUpon>ModAlumno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="agregarSalon.resx">
       <DependentUpon>agregarSalon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="asignarAccesos.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

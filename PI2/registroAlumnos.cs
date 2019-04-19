@@ -16,7 +16,7 @@ namespace PI2
 {
 
 
-    public partial class asignarAccesos : Form
+    public partial class registroAlumnos : Form
     {
         Thread th;
 
@@ -25,9 +25,9 @@ namespace PI2
         string matri = "";
         string idsalon ="";
         string idDocente = "";
-        string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
-        public asignarAccesos(string mat)
+        string constring = "server=localhost;user id=root;pwd=contra;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
+        public registroAlumnos(string mat)
         {
 
             
@@ -295,6 +295,21 @@ namespace PI2
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             fill3();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm5);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+
+        private void openNewForm5()
+        {
+
+            Application.Run(new ModAlumno(matri));
+
         }
     }
 }
