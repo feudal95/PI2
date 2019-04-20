@@ -101,6 +101,7 @@ namespace PI2
             th = new Thread(openNewForm4);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
+            //
         }
         private void openNewForm4()
         {
