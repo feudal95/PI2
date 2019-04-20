@@ -56,6 +56,7 @@ namespace PI2
                 bool t = false;
                 ChangeEnabled(t);
                 button2.Enabled = true;
+                button4.Enabled = true;
 
            }
 
