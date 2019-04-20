@@ -1361,5 +1361,10 @@ namespace PI2
             button4.Enabled = false;
             button1.Enabled = true;
         }
+
+        private void Usuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
