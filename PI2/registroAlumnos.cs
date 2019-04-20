@@ -25,8 +25,8 @@ namespace PI2
         string matri = "";
         string idsalon ="";
         string idDocente = "";
-        string constring = "server=localhost;user id=root;pwd=contra;persistsecurityinfo=True;database=asistencia;SslMode=none";
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
+        string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         public registroAlumnos(string mat)
         {
 
@@ -45,18 +45,30 @@ namespace PI2
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             CheckForIllegalCrossThreadCalls = false;
 
-            if (serialPort1.IsOpen)
-            {
+           try
+           {
                 serialPort1.Open();
                 serialPort1.DataReceived += OnDataReceived;
-            }
-            else
-            {
-                MessageBox.Show("por favor conecte el lector para proceder con la asignacion de accesos");
-            }
+           }
+           catch(Exception ex)
+           {
+               MessageBox.Show("por favor conecte el lector para proceder con la asignacion de accesos");
+                bool t = false;
+                ChangeEnabled(t);
+                button2.Enabled = true;
+
+           }
 
             matri = mat;
             FillCombo();
+        }
+
+        void ChangeEnabled(bool enabled)
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = enabled;
+            }
         }
 
 

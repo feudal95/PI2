@@ -17,7 +17,7 @@ namespace PI2
     {
         Thread th;
 
-        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=contra");
+        MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
         string mat = "";
         public Form1()
         {
