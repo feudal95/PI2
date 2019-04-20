@@ -16,5 +16,10 @@ namespace PI2
         {
             InitializeComponent();
         }
+
+        private void Salon_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

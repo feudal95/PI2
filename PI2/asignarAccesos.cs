@@ -44,8 +44,17 @@ namespace PI2
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             CheckForIllegalCrossThreadCalls = false;
-            //serialPort1.Open();
-            //serialPort1.DataReceived += OnDataReceived;
+
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Open();
+                serialPort1.DataReceived += OnDataReceived;
+            }
+            else
+            {
+                MessageBox.Show("por favor conecte el lector para proceder con la asignacion de accesos");
+            }
+
             matri = mat;
             FillCombo();
         }

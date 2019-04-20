@@ -154,6 +154,7 @@
             this.usuario.Size = new System.Drawing.Size(35, 13);
             this.usuario.TabIndex = 10;
             this.usuario.Text = "label6";
+            this.usuario.Click += new System.EventHandler(this.Usuario_Click);
             // 
             // button1
             // 
