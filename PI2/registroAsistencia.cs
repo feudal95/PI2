@@ -255,6 +255,16 @@ namespace PI2
                 resultado.Text = "Alumno no registrado";
             }
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lineShape1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

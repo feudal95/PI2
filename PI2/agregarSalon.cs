@@ -1366,5 +1366,10 @@ namespace PI2
         {
 
         }
+
+        private void lineShape1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

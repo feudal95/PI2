@@ -333,5 +333,10 @@ namespace PI2
             Application.Run(new ModAlumno(matri));
 
         }
+
+        private void lineShape1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
