@@ -363,5 +363,10 @@ namespace PI2
             button2.Enabled = false;
             button4.Enabled = false;
         }
+
+        private void lineShape1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
