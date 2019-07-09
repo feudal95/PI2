@@ -15,30 +15,35 @@ using System.IO.Ports;
 namespace PI2
 {
 
-
-    public partial class AgregarAlumnos : Form
+    
+    public partial class registroAsistencia : Form
     {
         Thread th;
 
         string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
         MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
-        string entrada = "";
+        string entrada ="";
         string idSalon = "";
         string dia = "";
         string matri = "";
-        public AgregarAlumnos(string mat)
+        public registroAsistencia(string mat)
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            if (serialPort1.IsOpen)
+            try
             {
                 serialPort1.Open();
                 serialPort1.DataReceived += OnDataReceived;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("por favor conecte el lector para proceder con la toma de asistencia.");
+                MessageBox.Show("Error, Lector no conectado");
+                bool t = false;
+                ChangeEnabled(t);
+                button2.Enabled = true;
             }
+
+
             
             DateTime dateValue = DateTime.Now;
             int aa = ((int)dateValue.DayOfWeek);
@@ -138,17 +143,16 @@ namespace PI2
 
             }
 
-
-
-
-
-
-
-
-
-            //serialPort1.Open();
-            //serialPort1.DataReceived += OnDataReceived;
             matri = mat;
+        }
+
+
+        void ChangeEnabled(bool enabled)
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = enabled;
+            }
         }
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -157,6 +161,7 @@ namespace PI2
             serialPort1.Close();
             textBoxRFID.Text = entrada;
             serialPort1.Open();
+
 
         }
 

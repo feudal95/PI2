@@ -1,6 +1,6 @@
 ﻿namespace PI2
 {
-    partial class asignarAccesos
+    partial class registroAlumnos
     {
         /// <summary>
         /// Required designer variable.
@@ -51,6 +51,8 @@
             this.horaFinTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -163,11 +165,11 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label6.Location = new System.Drawing.Point(41, 18);
+            this.label6.Location = new System.Drawing.Point(14, 18);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(177, 39);
+            this.label6.Size = new System.Drawing.Size(292, 39);
             this.label6.TabIndex = 20;
-            this.label6.Text = "Asistencia";
+            this.label6.Text = "Registro Alumnos";
             // 
             // pictureBox3
             // 
@@ -293,12 +295,35 @@
             this.name.TabIndex = 28;
             this.name.Text = "Nombre";
             // 
-            // asignarAccesos
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 11;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.DarkMagenta;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(469, 269);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(86, 36);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Modificar";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // registroAlumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PI2.Properties.Resources.graficoback11;
             this.ClientSize = new System.Drawing.Size(633, 317);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.name);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.horaFinTxt);
@@ -321,7 +346,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "asignarAccesos";
+            this.Name = "registroAlumnos";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.asignarAccesos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -355,5 +380,13 @@
         private System.Windows.Forms.TextBox horaFinTxt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label name;
+
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

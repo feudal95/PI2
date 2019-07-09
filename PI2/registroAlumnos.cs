@@ -16,7 +16,7 @@ namespace PI2
 {
 
 
-    public partial class asignarAccesos : Form
+    public partial class registroAlumnos : Form
     {
         Thread th;
 
@@ -27,7 +27,7 @@ namespace PI2
         string idDocente = "";
         string constring = "server=localhost;user id=root;pwd=;persistsecurityinfo=True;database=asistencia;SslMode=none";
         MySqlConnection conn = new MySqlConnection("server=localhost;database=asistencia;uid=root;pwd=");
-        public asignarAccesos(string mat)
+        public registroAlumnos(string mat)
         {
 
             
@@ -45,18 +45,31 @@ namespace PI2
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             CheckForIllegalCrossThreadCalls = false;
 
-            if (serialPort1.IsOpen)
-            {
+           try
+           {
                 serialPort1.Open();
                 serialPort1.DataReceived += OnDataReceived;
-            }
-            else
-            {
-                MessageBox.Show("por favor conecte el lector para proceder con la asignacion de accesos");
-            }
+           }
+           catch(Exception ex)
+           {
+               MessageBox.Show("por favor conecte el lector para proceder con la asignacion de accesos");
+                bool t = false;
+                ChangeEnabled(t);
+                button2.Enabled = true;
+                button4.Enabled = true;
+
+           }
 
             matri = mat;
             FillCombo();
+        }
+
+        void ChangeEnabled(bool enabled)
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = enabled;
+            }
         }
 
 
@@ -304,6 +317,21 @@ namespace PI2
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             fill3();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(openNewForm5);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+
+        private void openNewForm5()
+        {
+
+            Application.Run(new ModAlumno(matri));
+
         }
     }
 }

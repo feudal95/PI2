@@ -1,6 +1,6 @@
 ﻿namespace PI2
 {
-    partial class AgregarAlumnos
+    partial class registroAsistencia
     {
         /// <summary>
         /// Required designer variable.
